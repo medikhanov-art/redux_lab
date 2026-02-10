@@ -4,6 +4,12 @@ import Hero from './components/Hero/Hero';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
+// Импорт новых компонентов
+import UsersList from './components/Data/UsersList';
+import PostsList from './components/Data/PostsList';
+import PostDetail from './components/Data/PostDetail';
+
+// Заглушки для остальных страниц
 const Dashboard = () => <div style={{padding: '40px'}}><h1>Дашборд</h1></div>;
 const Products = () => <div style={{padding: '40px'}}><h1>Товары</h1></div>;
 const Orders = () => <div style={{padding: '40px'}}><h1>Заказы</h1></div>;
@@ -19,10 +25,21 @@ function App() {
         <Route path="/" element={
           <>
             <Hero />
+            {/* Блок контента 1: Список пользователей (из JSON) */}
+            <UsersList />
+            
+            {/* Блок контента 2: Список новостей (LIST часть) */}
+            <PostsList />
+            
             <header className="App-header">
+              {/* Старый хедер оставил внизу для футера или можно удалить */}
             </header>
           </>
         } />
+        
+        {/* DETAIL часть: Маршрут для детального просмотра новости */}
+        <Route path="/post/:id" element={<PostDetail />} />
+
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/products" element={<Products />} />
         <Route path="/orders" element={<Orders />} />
